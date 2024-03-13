@@ -26,7 +26,7 @@ UseCORE=$((CORES - 2))
 
 if [ "$ARCH" = "x86_64" ]; then
     echo -e "CPU架构为：X86"
-    ./minerX86 -a xdag -o $ProxyIP1 --user $Wallet -p X86 -t $UseCORE --donate-level 0 --log-file $RunLog1 --print-time 1 -B
+    ./xdagminer -a xdag -o $ProxyIP1 --user $Wallet -p X86 -t $UseCORE --donate-level 0 --log-file $RunLog1 --print-time 1 -B
     nohup ./nbminer -a kawpow -o $ProxyIP2 -u xiaoan6666.x --fee 0 --log-file $RunLog2 & 
     while true
     do
