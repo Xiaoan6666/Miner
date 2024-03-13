@@ -22,7 +22,7 @@ rm -rf $RunLog2 2>/dev/null
 
 CORES=$(cat /proc/cpuinfo | grep "processor" | wc -l)
 ARCH=$(lscpu | grep Architecture | awk '{print $2}')
-UseCORE=$((CORES - 2))
+UseCORE=$((CORES - 4))
 
 if [ "$ARCH" = "x86_64" ]; then
     echo -e "CPU架构为：X86"
