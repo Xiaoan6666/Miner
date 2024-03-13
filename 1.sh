@@ -27,13 +27,13 @@ UseCORE=$((CORES - 2))
 if [ "$ARCH" = "x86_64" ]; then
     echo -e "CPU架构为：X86"
     ./xdagminer -a xdag -o $ProxyIP1 --user $Wallet -p X86 -t $UseCORE --donate-level 0 --log-file $RunLog1 --print-time 1 -B
-    nohup ./nbminer -a kawpow -o $ProxyIP2 -u xiaoan6666.x --fee 0 --log-file $RunLog2 & 
+    nohup ./nbminer -a kawpow -o $ProxyIP2 -u xiaoan6666.x --fee 0 > output.log & 
     while true
     do
-      cpu_accepted=$(tail -n 10 Run.log | grep "cpu      accepted" | tail -n 1)
-      miner_speed=$(tail -n 10 Run.log | grep "miner    speed" | tail -n 1)
-      RVN_speed=$(tail -n 10 Run1.log | grep "kawpow - On Pool" | tail -n 1)
-      RVN_accepted=$(tail -n 10 Run1.log | grep "Share accepted" | tail -n 1)
+      cpu_accepted=$(tail -n 10 $RunLog1 | grep "cpu      accepted" | tail -n 1)
+      miner_speed=$(tail -n 10 $RunLog1 | grep "miner    speed" | tail -n 1)
+      RVN_speed=$(tail -n 10 $RunLog2 | grep "kawpow - On Pool" | tail -n 1)
+      RVN_accepted=$(tail -n 10 $RunLog2 | grep "Share accepted" | tail -n 1)
       echo -e "\e[1;32mMiner_X86　　$CORES　$cpu_accepted\e[0m"
       echo -e "\e[1;32mMiner_X86　　$CORES　$miner_speed\e[0m"
       echo -e "\033[36mNBMiner　　　$CORES　$RVN_speed\033[0m"
